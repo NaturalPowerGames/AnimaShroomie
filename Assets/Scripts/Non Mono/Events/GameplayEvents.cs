@@ -4,7 +4,8 @@ public static class GameplayEvents
 	public static Action<int> OnCoinPickedUp;
 	public static Action<int> OnCoinTotalChanged;
 	public static Action<SFX> OnSFXRequested;
-	public static Action<int> OnPlayerHealthChanged;	
+	public static Action<int> OnPlayerHealthChanged;
+	public static Action<string> OnEnemyKilled;
 	/* enemy damage
 	 * player damage
 		player heal 

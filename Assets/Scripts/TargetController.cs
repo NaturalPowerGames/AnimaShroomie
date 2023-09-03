@@ -14,7 +14,6 @@ public class TargetController : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("Hit target");
 		GameplayEvents.OnSFXRequested?.Invoke(SFX.Coin);
 		ChangeRendererColor(Color.red);
 		StartCoroutine(ChangeBackToOriginalColor());

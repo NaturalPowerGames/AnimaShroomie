@@ -17,56 +17,39 @@ public class PlayerController : MonoBehaviour
     const string yAxis = "Mouse Y";
     Rigidbody m_Rigidbody;
     public float movespeed = 0.1f;
-    public float m_Thrust = 20f;
-
+    public float m_Thrust = 200f;
     
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
-    {
-        if (Input.GetButton("Jump"))
-        {
-            //Apply a force to this Rigidbody in direction of this GameObjects up axis
-            m_Rigidbody.AddForce(transform.up * m_Thrust);
-        }
-        
-    }
-
-    void Update()
+    private void Update()
     {
         rotation.x += Input.GetAxis(xAxis) * sensitivity;
         var xQuat = Quaternion.AngleAxis(rotation.x, Vector3.up);
         transform.localRotation = xQuat;
-
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("w key was pressed");
-            transform.position += transform.forward * movespeed;
+            m_Rigidbody.AddForce(transform.up * m_Thrust);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.W))
         {
-            Debug.Log("w key was pressed");
-            transform.position += transform.forward * -movespeed;
-
+            transform.position += transform.forward * movespeed * Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.S))
         {
-            Debug.Log("w key was pressed");
-            transform.position += transform.right * movespeed;
-
+            transform.position += transform.forward * -movespeed * Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.D))
         {
-            Debug.Log("w key was pressed");
-            transform.position += transform.right * -movespeed;
-
+            transform.position += transform.right * movespeed * Time.deltaTime;
         }
-
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.position += transform.right * -movespeed * Time.deltaTime;
+        }
     }
-
 }
 
 

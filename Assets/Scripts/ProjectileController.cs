@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour
+public class ProjectileController : MonoBehaviour, IDealsDamageToEnemies
 {
     private Vector3 direction;
+    public float damage;
+    public float Damage()
+    {
+        return damage;
+    }
 
     private void Update()
     {
@@ -17,4 +22,6 @@ public class ProjectileController : MonoBehaviour
         this.direction = direction;
         Destroy(gameObject, 1f);
 	}
+
+	
 }

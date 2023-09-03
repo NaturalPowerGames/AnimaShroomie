@@ -18,16 +18,16 @@ public class FirstPersonCameraRotation : MonoBehaviour
 
     Vector2 rotation = Vector2.zero;
     const string xAxis = "Mouse X"; //Strings in direct code generate garbage, storing and re-using them creates no garbage
-    //const string yAxis = "Mouse Y";
+    const string yAxis = "Mouse Y";
 
-    void Update()
+    private void Update()
     {
         rotation.x += Input.GetAxis(xAxis) * sensitivity;
-        //rotation.y += Input.GetAxis(yAxis) * sensitivity;
-        //rotation.y = Mathf.Clamp(rotation.y, -yRotationLimit, yRotationLimit);
+        rotation.y += Input.GetAxis(yAxis) * sensitivity;
+        rotation.y = Mathf.Clamp(rotation.y, -yRotationLimit, yRotationLimit);
         var xQuat = Quaternion.AngleAxis(rotation.x, Vector3.up);
-        //var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left);
+        var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left);
 
-        transform.localRotation = xQuat ; //Quaternions seem to rotate more consistently than EulerAngles. Sensitivity seemed to change slightly at certain degrees using Euler. transform.localEulerAngles = new Vector3(-rotation.y, rotation.x, 0);
+        transform.parent.localRotation = xQuat * yQuat ; //Quaternions seem to rotate more consistently than EulerAngles. Sensitivity seemed to change slightly at certain degrees using Euler. transform.localEulerAngles = new Vector3(-rotation.y, rotation.x, 0);
     }
 }

@@ -1,12 +1,13 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System;
+using System.Collections;
 
 public class GameplayUIController : MonoBehaviour
 {
-	public TextMeshProUGUI coinText, healthText;
-	public Button coinSoundButton, spawnEnemyButton;
+	public TextMeshProUGUI coinText, healthText, announcementText;
+	public Button coinSoundButton, spawnEnemyButton, spawnPatrolEnemy;
+	private Coroutine announcementWait;
 
 	private void Awake()
 	{
@@ -17,6 +18,23 @@ public class GameplayUIController : MonoBehaviour
 	{
 		GameplayEvents.OnPlayerHealthChanged += OnPlayerHealthChanged;
 		GameplayEvents.OnCoinTotalChanged += OnCoinTotalChanged;
+		UIEvents.OnAnnouncementRequested += OnAnnouncementRequested;
+	}
+
+	private void OnAnnouncementRequested(string announcement, float duration)
+	{
+		announcementText.text = announcement;
+		if(announcementWait != null)
+		{
+			StopCoroutine(announcementWait);
+		}
+		announcementWait = StartCoroutine(RemoveAnnouncement(duration));
+	}
+
+	private IEnumerator RemoveAnnouncement(float duration)
+	{
+		yield return new WaitForSeconds(duration);
+		announcementText.text = "";
 	}
 
 	private void OnCoinTotalChanged(int total)
@@ -39,6 +57,10 @@ public class GameplayUIController : MonoBehaviour
 		spawnEnemyButton.onClick.AddListener(() =>
 		{
 			SpawnEvents.OnEnemySpawnRequested?.Invoke(0);
+		});
+		spawnPatrolEnemy.onClick.AddListener(() =>
+		{
+			SpawnEvents.OnPatrollingEnemyRequested?.Invoke(0, 0);
 		});
 	}
 
