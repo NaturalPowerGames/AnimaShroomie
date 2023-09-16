@@ -21,7 +21,5 @@ public class ProjectileController : MonoBehaviour, IDealsDamageToEnemies
         transform.localEulerAngles = rotation;
         this.direction = direction;
         Destroy(gameObject, 1f);
-	}
-
-	
+	}	
 }
