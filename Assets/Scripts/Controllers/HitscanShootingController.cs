@@ -7,7 +7,7 @@ public class HitscanShootingController : MonoBehaviour
 	public int rayCount = 7;
 	public float angleSpread = 30;
 	public float rayDistance = 15;
-
+	public Transform shootingPoint;
 
 	private void Awake()
 	{
@@ -30,7 +30,7 @@ public class HitscanShootingController : MonoBehaviour
 		float angleStep = angleSpread / (rayCount - 1);
 
 		// Get the forward direction of the transform
-		Vector3 forward = -transform.right;
+		Vector3 forward = shootingPoint.forward;
 
 		// Iterate through each ray
 		for (int i = 0; i < rayCount; i++)
@@ -40,7 +40,7 @@ public class HitscanShootingController : MonoBehaviour
 
 			// Calculate the direction vector for the ray
 			Vector3 direction = Quaternion.Euler(0, angle, 0) * forward;
-			if (Physics.Raycast(transform.position, direction, out hit, rayDistance)) // the first part of the raycast is the origin, second is the direction, Camera.main is for shooting
+			if (Physics.Raycast(shootingPoint.position, direction, out hit, rayDistance)) // the first part of the raycast is the origin, second is the direction, Camera.main is for shooting
 			{
 				if (hit.collider.GetComponent<TargetController>())
 				{
@@ -48,7 +48,6 @@ public class HitscanShootingController : MonoBehaviour
 				}
 			}
 		}
-		Debug.Log("Hitting");
 	}
 
 	private void OnDrawGizmos()
@@ -60,7 +59,7 @@ public class HitscanShootingController : MonoBehaviour
 		float angleStep = angleSpread / (rayCount - 1);
 
 		// Get the forward direction of the transform
-		Vector3 forward = -transform.right;
+		Vector3 forward = shootingPoint.forward;
 
 		// Iterate through each ray
 		for (int i = 0; i < rayCount; i++)
@@ -73,7 +72,7 @@ public class HitscanShootingController : MonoBehaviour
 
 			// Draw the ray
 			Gizmos.color = Color.red;
-			Gizmos.DrawRay(transform.position, direction * rayDistance);
+			Gizmos.DrawRay(shootingPoint.position, direction * rayDistance);
 		}
 	}
 }
