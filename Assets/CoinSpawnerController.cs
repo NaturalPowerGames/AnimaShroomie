@@ -13,4 +13,20 @@ public class CoinSpawnerController : MonoBehaviour
 	{
 		Instantiate(coinData.coins[(int)coinType]);
 	}
+
+	private void CollectCoin(int amount)
+	{
+		if (PlayerPrefs.HasKey("coins"))
+		{
+			int coinAmount = PlayerPrefs.GetInt("coins");
+			PlayerPrefs.SetInt("coins", coinAmount + amount);
+		}
+		else
+		{
+			PlayerPrefs.SetInt("coins", amount);
+		}
+		//keys
+		PlayerPrefs.SetString("username", "name" /*inputText.text*/); //first scene
+		//text.text = PlayerPrefs.GetString("username"); //second scene
+	}
 }
