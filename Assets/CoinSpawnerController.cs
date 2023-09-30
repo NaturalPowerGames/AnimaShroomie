@@ -14,6 +14,7 @@ public class CoinSpawnerController : MonoBehaviour
 		Instantiate(coinData.coins[(int)coinType]);
 	}
 
+	//Playerprefs showcase
 	private void CollectCoin(int amount)
 	{
 		if (PlayerPrefs.HasKey("coins"))
