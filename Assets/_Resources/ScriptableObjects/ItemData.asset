@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9befdcea99981549b6c13ea11c3dfae, type: 3}
+  m_Name: ItemData
+  m_EditorClassIdentifier: 
+  items:
+  - Name: Flask
+    Cost: 100
+    Index: 0
+    UISprite: {fileID: 21300000, guid: 3ac2b00bfeca4b34482fa33bb6aab50c, type: 3}
+    ItemPrefab: {fileID: 7170735883418518914, guid: c6e6bc63cc21f4041a6085e262c03e9d, type: 3}
+    Coordinates: {x: 0, y: 0}
+  - Name: Flask
+    Cost: 100
+    Index: 1
+    UISprite: {fileID: 21300000, guid: 3ac2b00bfeca4b34482fa33bb6aab50c, type: 3}
+    ItemPrefab: {fileID: 7170735883418518914, guid: c6e6bc63cc21f4041a6085e262c03e9d, type: 3}
+    Coordinates: {x: 0, y: 0}
